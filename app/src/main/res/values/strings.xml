@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FragmentExample</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="static_fragment_text">I\'m a static fragment</string>
+    <string name="dynamic_fragment_text">I\'m dynamically added to my activity</string>
+    <string name="open_hello_fragment">Open Hello Fragment</string>
+</resources>
