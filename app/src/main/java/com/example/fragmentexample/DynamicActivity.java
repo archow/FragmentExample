@@ -16,7 +16,8 @@ public class DynamicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dynamic);
 
         //To dynamically add a fragment, create an instance of your framgent
-        DynamicFragment myFragment = new DynamicFragment();
+        DynamicFragment myFragment = DynamicFragment
+                .newInstance("Abe", "Chow");
 
         //Then get an instance of your Fragment manager
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +32,7 @@ public class DynamicFragment extends Fragment {
     private String mParam2;
 
     private Button mOpenHelloFragmentButton;
+    private TextView mDynamicFragmentTextView;
 
     public DynamicFragment() {
         // Required empty public constructor
@@ -68,6 +70,10 @@ public class DynamicFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dynamic, container, false);
+        mDynamicFragmentTextView = view.findViewById(R.id.dynamic_fragment_textview);
+        String text = mParam1 + " " + mParam2;
+        mDynamicFragmentTextView.setText(text);
+
         mOpenHelloFragmentButton = view.findViewById(R.id.open_fragment_button);
         mOpenHelloFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
