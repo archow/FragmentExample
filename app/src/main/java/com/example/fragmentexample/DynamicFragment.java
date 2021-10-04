@@ -1,7 +1,9 @@
 package com.example.fragmentexample;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -33,6 +36,9 @@ public class DynamicFragment extends Fragment {
 
     private Button mOpenHelloFragmentButton;
     private TextView mDynamicFragmentTextView;
+    private EditText mInfoBackToActivityEt;
+    private Button mInfoBackToActivityButton;
+    private FragmentInteractionListener mListener;
 
     public DynamicFragment() {
         // Required empty public constructor
@@ -94,6 +100,29 @@ public class DynamicFragment extends Fragment {
             }
         });
 
+        mInfoBackToActivityEt = view.findViewById(R.id.info_back_to_activity_et);
+        mInfoBackToActivityButton = view.findViewById(R.id.send_to_activity_btn);
+        mInfoBackToActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //here we want to pass whatever is in our edit text to this mehtod
+                //so that the activity can use it
+                String message = mInfoBackToActivityEt.getText().toString();
+                mListener.onFragmentButtonClicked(message);
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentInteractionListener) {
+            mListener = (FragmentInteractionListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentInteractionListener");
+        }
     }
 }
